@@ -3,11 +3,18 @@ defmodule Example do
   alias UUID # imports an external package
 
   def start(_type, _args) do
-    IO.puts(UUID.uuid4())
+    Example.main()
     Supervisor.start_link([], strategy: :one_for_one)
     end
 
-    def hello do
-      :world
+    def main do
+      name = "Stephen";
+      status = Enum.random([:gold, :silver, :bronze, :"not a member"])
+
+      case status do
+      :gold -> IO.puts("Welcome! #{name}.")
+      :"not a member" -> IO.puts("You need a membership!")
+      _ -> IO.puts("No Entry!")
+      end
     end
-  end
+end
